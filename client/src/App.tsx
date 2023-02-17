@@ -5,7 +5,7 @@ import axios from "axios"
 function App(): JSX.Element {
 
    React.useEffect(() => {
-      axios.get("https://localhost:8000/api/calculator")
+      axios.get("http://localhost:8888/api/calculations")
          .then(res => {
             console.warn(res)
          })
@@ -17,6 +17,8 @@ function App(): JSX.Element {
    return (
       <div className="app">
          <p>Works!</p>
+
+         <p>Works from docker as well, as I can see...</p>
       </div>
    )
 }
