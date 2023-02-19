@@ -2,12 +2,21 @@ import React from "react"
 
 import axios from "axios"
 
+interface CalculationsInterface {
+    calculatorId: number
+    id: number
+    expression: string
+    result: number
+}
+
 function App(): JSX.Element {
 
+   const [calculations, setCalculations] = React.useState<CalculationsInterface[]>([])
+
    React.useEffect(() => {
-      axios.get("http://localhost:8888/api/calculations")
+      axios.post("http://localhost:8888/api/calculator", {},)
          .then(res => {
-            console.warn(res)
+            setCalculations(res.data.items)
          })
          .catch(err => {
             console.warn(err)
@@ -19,6 +28,17 @@ function App(): JSX.Element {
          <p>Works!</p>
 
          <p>Works from docker as well, as I can see...</p>
+
+         {
+            calculations.map(calc => (
+               <div key={calc.id}>
+                  <p>{calc.calculatorId}</p>
+                  <p>{calc.id}</p>
+                  <p>{calc.expression}</p>
+                  <p>{calc.result}</p>
+               </div>
+            ))
+         }
       </div>
    )
 }
