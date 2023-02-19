@@ -4,4 +4,10 @@ start:
 stop:
 	docker-compose stop
 
-.PHONY: start stop
+migrate:
+	docker exec -it calc-php sh -c "symfony console doctrine:migrations:migrate"
+
+migration:
+	docker exec -it calc-php sh -c "symfony console make:migration"
+
+.PHONY: start stop migrate migration

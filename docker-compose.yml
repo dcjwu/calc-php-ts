@@ -21,7 +21,6 @@ services:
     volumes:
       - ./api:/var/www/html
 
-
   react:
     image: calc-client
     container_name: calc-client
@@ -39,8 +38,13 @@ services:
     container_name: calc-db
     ports:
       - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-Admin123!}
       MYSQL_PASSWORD: ${DB_PASSWORD:-calc0123!!}
       MYSQL_USER: ${DB_USER:-calc}
       MYSQL_DATABASE: ${DB_DATABASE:-calc_db}
+
+volumes:
+  db:
