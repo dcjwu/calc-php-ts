@@ -20,9 +20,11 @@ class CalculatorService
     {
     }
 
-    public function getCalculations(): CalculationListItemsResponse
+    public function getCalculations(int $calculatorId): CalculationListItemsResponse
     {
-        $calculations = $this->calculationsRepository->findAll();
+
+        $calculations = $this->calculationsRepository->findCalculationsByCalculatorId($calculatorId);
+
         $items = array_map(
             fn(Calculations $calculation) => new CalculationListItems(
                 $calculation->getCalculator()->getId(),
