@@ -15,13 +15,13 @@ class SessionTokenService implements TokenServiceInterface
     public function __construct(
         private readonly TokenRepository $tokenRepository,
         private readonly TokenFactory $tokenFactory
-    )
-    {
+    ) {
     }
 
     public function getToken(Request $request): Token|null
     {
         $sessionId = $request->getSession()->getId();
+
         return $this->tokenRepository->findOneBy(['value' => $sessionId]);
     }
 

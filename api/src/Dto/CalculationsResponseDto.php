@@ -5,12 +5,11 @@ namespace App\Dto;
 class CalculationsResponseDto
 {
     public function __construct(
-        private readonly int    $calculatorId,
-        private readonly int    $id,
+        private readonly int $calculatorId,
+        private readonly int $id,
         private readonly string $expression,
-        private readonly float  $result
-    )
-    {
+        private readonly float $result
+    ) {
     }
 
     public function getCalculatorId(): int
@@ -32,5 +31,4 @@ class CalculationsResponseDto
     {
         return $this->result;
     }
-
 }

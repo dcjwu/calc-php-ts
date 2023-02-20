@@ -13,8 +13,7 @@ class CalculatorService
     public function __construct(
         private readonly CalculatorRepository $calculatorRepository,
         private readonly CalculatorFactory $calculatorFactory
-    )
-    {
+    ) {
     }
 
     public function getCalculator(Token $token): Calculator|null

@@ -4,7 +4,6 @@ namespace App\Factory;
 
 use App\Entity\Calculations;
 use App\Entity\Calculator;
-use App\Entity\Token;
 
 class CalculationsFactory
 {

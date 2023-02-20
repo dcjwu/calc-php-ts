@@ -2,7 +2,6 @@
 
 namespace App\Validator;
 
-use App\Dto\CalculationsRequestDto;
 use App\Exceptions\PayloadValidationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -12,9 +11,8 @@ class RequestBodyValidator
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
-        private readonly ValidatorInterface  $validator
-    )
-    {
+        private readonly ValidatorInterface $validator
+    ) {
     }
 
     /**

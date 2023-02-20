@@ -8,32 +8,27 @@ use App\Entity\Calculations;
 use App\Exceptions\CalculatorNotFoundException;
 use App\Exceptions\UnauthorizedException;
 use App\Factory\CalculationsFactory;
-use App\Factory\TokenFactory;
 use App\Interface\TokenServiceInterface;
 use App\Repository\CalculationsRepository;
-use App\Repository\CalculatorRepository;
-use App\Repository\TokenRepository;
 use Symfony\Component\HttpFoundation\Request;
 
 class CalculationsService
 {
     public function __construct(
-        private readonly TokenServiceInterface  $tokenService,
-        private readonly CalculatorService      $calculatorService,
+        private readonly TokenServiceInterface $tokenService,
+        private readonly CalculatorService $calculatorService,
         private readonly CalculationsRepository $calculationsRepository,
-        private readonly CalculatorRepository   $calculatorRepository,
-        private readonly CalculationsFactory    $calculationsFactory,
-    )
-    {
+        private readonly CalculationsFactory $calculationsFactory,
+    ) {
     }
 
     /**
      * @return CalculationsResponseDto[]
+     *
      * @throws UnauthorizedException
      * @throws CalculatorNotFoundException
      */
-    public
-    function getCalculations(Request $request): array
+    public function getCalculations(Request $request): array
     {
         $token = $this->tokenService->getToken($request);
 
@@ -50,7 +45,7 @@ class CalculationsService
         $calculations = $this->calculationsRepository->findCalculationsByCalculatorId($calculator->getId());
 
         return array_map(
-            fn(Calculations $calculation) => new CalculationsResponseDto(
+            fn (Calculations $calculation) => new CalculationsResponseDto(
                 $calculation->getCalculator()->getId(),
                 $calculation->getId(),
                 $calculation->getExpression(),
@@ -59,8 +54,7 @@ class CalculationsService
         );
     }
 
-    public
-    function setCalculations(CalculationsRequestDto $dto, Request $request): CalculationsRequestDto
+    public function setCalculations(CalculationsRequestDto $dto, Request $request): CalculationsRequestDto
     {
         $token = $this->tokenService->getToken($request);
 
