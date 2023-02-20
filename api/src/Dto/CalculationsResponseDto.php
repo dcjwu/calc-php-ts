@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App\Dto;
 
-class CalculationListItems
+class CalculationsResponseDto
 {
     public function __construct(
         private readonly int    $calculatorId,
