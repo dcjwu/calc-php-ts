@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class PayloadValidationExceptionApplication extends ApplicationBaseException
+class PayloadValidationException extends ApplicationBaseException
 {
     public function __construct(string $validationErrors, ?Throwable $previous = null)
     {
