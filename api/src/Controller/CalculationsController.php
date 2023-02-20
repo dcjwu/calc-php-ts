@@ -40,6 +40,6 @@ class CalculationsController extends AbstractController
     {
         $dto = $this->requestBodyValidator->validate($request, CalculationsRequestDto::class);
 
-        return $this->json($this->calculationsService->setCalculations($dto));
+        return $this->json($this->calculationsService->setCalculations($dto, $request));
     }
 }

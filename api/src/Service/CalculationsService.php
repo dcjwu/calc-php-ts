@@ -8,19 +8,21 @@ use App\Entity\Calculations;
 use App\Exceptions\CalculatorNotFoundException;
 use App\Exceptions\UnauthorizedException;
 use App\Factory\CalculationsFactory;
+use App\Factory\TokenFactory;
 use App\Interface\TokenServiceInterface;
 use App\Repository\CalculationsRepository;
 use App\Repository\CalculatorRepository;
+use App\Repository\TokenRepository;
 use Symfony\Component\HttpFoundation\Request;
 
 class CalculationsService
 {
     public function __construct(
-        private readonly TokenServiceInterface    $tokenService,
+        private readonly TokenServiceInterface  $tokenService,
         private readonly CalculatorService      $calculatorService,
         private readonly CalculationsRepository $calculationsRepository,
         private readonly CalculatorRepository   $calculatorRepository,
-        private readonly CalculationsFactory    $calculationsFactory
+        private readonly CalculationsFactory    $calculationsFactory,
     )
     {
     }
@@ -30,7 +32,8 @@ class CalculationsService
      * @throws UnauthorizedException
      * @throws CalculatorNotFoundException
      */
-    public function getCalculations(Request $request): array
+    public
+    function getCalculations(Request $request): array
     {
         $token = $this->tokenService->getToken($request);
 
@@ -56,9 +59,20 @@ class CalculationsService
         );
     }
 
-    public function setCalculations(CalculationsRequestDto $dto): CalculationsRequestDto
+    public
+    function setCalculations(CalculationsRequestDto $dto, Request $request): CalculationsRequestDto
     {
-        $calculator = $this->calculatorRepository->findOneBy(['id' => 13]);
+        $token = $this->tokenService->getToken($request);
+
+        if (!$token) {
+            $token = $this->tokenService->createToken($request);
+        }
+
+        $calculator = $this->calculatorService->getCalculator($token);
+
+        if (!$calculator) {
+            $calculator = $this->calculatorService->createCalculator($token);
+        }
 
         $calculations = $this->calculationsFactory
             ->setCalculator($calculator)
