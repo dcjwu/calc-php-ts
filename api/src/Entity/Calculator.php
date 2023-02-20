@@ -22,7 +22,8 @@ class Calculator
     private Collection $calculations;
 
     #[ORM\ManyToOne(inversedBy: 'calculator')]
-    private ?Session $session = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Token $token = null;
 
     public function __construct()
     {
@@ -76,14 +77,14 @@ class Calculator
         return $this;
     }
 
-    public function getSession(): ?Session
+    public function getToken(): ?Token
     {
-        return $this->session;
+        return $this->token;
     }
 
-    public function setSession(?Session $session): self
+    public function setToken(?Token $token): self
     {
-        $this->session = $session;
+        $this->token = $token;
 
         return $this;
     }
