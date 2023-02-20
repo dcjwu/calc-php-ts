@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Dto\CalculationsRequestDto;
 use App\Dto\CalculationsResponseDto;
 use App\Entity\Calculations;
+use App\Factory\CalculationsFactory;
 use App\Repository\CalculationsRepository;
 use App\Repository\CalculatorRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +16,7 @@ class CalculationsService
     public function __construct(
         private readonly CalculationsRepository $calculationsRepository,
         private readonly CalculatorRepository $calculatorRepository,
-        private readonly EntityManagerInterface $em
+        private readonly CalculationsFactory $calculationsFactory
     )
     {
     }
@@ -41,14 +42,14 @@ class CalculationsService
     {
         $calculator = $this->calculatorRepository->findOneBy(['id' => 12]);
 
-        $calculations = (new Calculations())
+        $calculations = $this->calculationsFactory
             ->setCalculator($calculator)
             ->setExpression($dto->getExpression())
             ->setResult($dto->getResult())
-            ->setCreatedAt(new \DateTimeImmutable());
+            ->setCreatedAt()
+            ->create();
 
-        $this->em->persist($calculations);
-        $this->em->flush();
+        $this->calculationsRepository->save($calculations, true);
 
         return $dto;
     }
