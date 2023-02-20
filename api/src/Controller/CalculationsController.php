@@ -2,30 +2,38 @@
 
 namespace App\Controller;
 
-use App\Service\CalculatorService;
+use App\Dto\CalculationsRequestDto;
+use App\Exceptions\PayloadValidationException;
+use App\Service\CalculationsService;
+use App\Validator\RequestBodyValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CalculatorController extends AbstractController
+class CalculationsController extends AbstractController
 {
     public function __construct(
-        private readonly CalculatorService $calculatorService,
+        private readonly CalculationsService  $calculationsService,
+        private readonly RequestBodyValidator $requestBodyValidator
     )
     {
     }
 
-    #[Route('/calculator', name: 'get_calculations', methods: 'GET')]
+    #[Route('/calculations', name: 'get_calculations', methods: 'GET')]
     public function getCalculations(): JsonResponse
     {
-
-        return $this->json($this->calculatorService->getCalculations(1));
+        return $this->json($this->calculationsService->getCalculations(12));
     }
 
-    #[Route('/calculator', name: 'set_calculations', methods: 'POST')]
-    public function setCalculations(): JsonResponse
+    /**
+     * @throws PayloadValidationException
+     */
+    #[Route('/calculations', name: 'set_calculations', methods: 'POST')]
+    public function setCalculations(Request $request): JsonResponse
     {
-        return $this->json(['calcId' => 'alo']);
+        $dto = $this->requestBodyValidator->validate($request, CalculationsRequestDto::class);
+
+        return $this->json($this->calculationsService->setCalculations($dto));
     }
 }

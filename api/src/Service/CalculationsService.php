@@ -9,7 +9,7 @@ use App\Repository\CalculationsRepository;
 use App\Repository\CalculatorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CalculatorService
+class CalculationsService
 {
 
     public function __construct(

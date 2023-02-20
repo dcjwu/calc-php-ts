@@ -2,7 +2,8 @@
 
 namespace App\Validator;
 
-use App\Exceptions\PayloadValidationExceptionApplication;
+use App\Dto\CalculationsRequestDto;
+use App\Exceptions\PayloadValidationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -17,9 +18,9 @@ class RequestBodyValidator
     }
 
     /**
-     * @throws PayloadValidationExceptionApplication
+     * @throws PayloadValidationException
      */
-    public function validate(Request $request, string $dto): void
+    public function validate(Request $request, string $dto)
     {
         $request = $this->serializer->deserialize($request->getContent(), $dto, 'json');
         $errors = $this->validator->validate($request);
@@ -34,7 +35,9 @@ class RequestBodyValidator
                 ];
             }
 
-            throw new PayloadValidationExceptionApplication(json_encode($response));
+            throw new PayloadValidationException(json_encode($response));
         }
+
+        return $request;
     }
 }
