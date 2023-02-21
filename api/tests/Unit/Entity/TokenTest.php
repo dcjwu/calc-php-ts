@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Entity;
+namespace App\tests\Unit\Entity;
 
 use App\Entity\Token;
 use PHPUnit\Framework\TestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Factory;
+namespace App\tests\Unit\Factory;
 
 use App\Factory\TokenFactory;
 use PHPUnit\Framework\TestCase;

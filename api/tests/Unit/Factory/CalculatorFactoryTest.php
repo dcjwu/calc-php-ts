@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Factory;
+namespace App\tests\Unit\Factory;
 
 use App\Entity\Token;
 use App\Factory\CalculatorFactory;

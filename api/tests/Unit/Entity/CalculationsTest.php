@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Factory;
+namespace App\tests\Unit\Entity;
 
+use App\Entity\Calculations;
 use App\Entity\Calculator;
 use App\Entity\Token;
-use App\Factory\CalculationsFactory;
 use PHPUnit\Framework\TestCase;
 
-class CalculationsFactoryTest extends TestCase
+class CalculationsTest extends TestCase
 {
-    public function testCreateCalculations()
+    public function testGetters()
     {
         $token = (new Token())
             ->setValue('abcde');
@@ -20,15 +20,15 @@ class CalculationsFactoryTest extends TestCase
             ->setToken($token)
             ->setCreatedAt(\DateTimeImmutable::createFromFormat(DATE_W3C, '2023-04-04T00:00:00+00:00'));
 
-        $calculations = (new CalculationsFactory())
+        $calculations = (new Calculations())
             ->setCalculator($calculator)
             ->setExpression('2 + 2')
             ->setResult('4.0')
-            ->setCreatedAt()
-            ->create();
+            ->setCreatedAt(\DateTimeImmutable::createFromFormat(DATE_W3C, '2023-04-04T00:00:00+00:00'));
 
         $this->assertSame($calculator, $calculations->getCalculator());
         $this->assertSame('2 + 2', $calculations->getExpression());
         $this->assertSame('4.0', $calculations->getResult());
+        $this->assertSame('2023-04-04T00:00:00+00:00', $calculations->getCreatedAt()->format(DATE_W3C));
     }
 }

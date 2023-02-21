@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service;
+namespace App\tests\Unit\Service;
 
 use App\Entity\Token;
 use App\Factory\TokenFactory;

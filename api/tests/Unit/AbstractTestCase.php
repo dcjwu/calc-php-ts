@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace App\tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service;
+namespace App\tests\Unit\Service;
 
 use App\Entity\Calculator;
 use App\Entity\Token;

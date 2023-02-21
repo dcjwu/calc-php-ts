@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Validator;
+namespace App\tests\Unit\Validator;
 
 use App\Dto\CalculationsRequestDto;
 use App\Exceptions\PayloadValidationException;

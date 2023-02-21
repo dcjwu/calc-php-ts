@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service;
+namespace App\tests\Unit\Service;
 
 use App\Dto\CalculationsRequestDto;
 use App\Dto\CalculationsResponseDto;
@@ -19,7 +19,7 @@ use App\Repository\CalculationsRepository;
 use App\Service\CalculationsService;
 use App\Service\CalculatorService;
 use App\Service\SessionTokenService;
-use App\Tests\AbstractTestCase;
+use App\Tests\Unit\AbstractTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 class CalculationsServiceTest extends AbstractTestCase
