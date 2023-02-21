@@ -19,7 +19,7 @@ class Calculations
     private ?string $expression = null;
 
     #[ORM\Column]
-    private ?float $result = null;
+    private ?string $result = null;
 
     #[ORM\ManyToOne(inversedBy: 'calculations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -45,12 +45,12 @@ class Calculations
         return $this;
     }
 
-    public function getResult(): ?float
+    public function getResult(): ?string
     {
         return $this->result;
     }
 
-    public function setResult(float $result): self
+    public function setResult(string $result): self
     {
         $this->result = $result;
 

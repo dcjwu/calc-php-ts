@@ -13,7 +13,7 @@ class CalculationsRequestDto
     protected $expression;
 
     #[Assert\NotBlank]
-    #[Assert\Type('float')]
+    #[Assert\Type('string')]
     protected $result;
 
     public function getExpression()

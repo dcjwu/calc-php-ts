@@ -30,7 +30,7 @@ class CalculationsFactory
         return $this;
     }
 
-    public function setResult(float $result): CalculationsFactory
+    public function setResult(string $result): CalculationsFactory
     {
         $this->calculations->setResult($result);
 

@@ -10,7 +10,7 @@ class CalculationsResponseDto
         private readonly int $calculatorId,
         private readonly int $id,
         private readonly string $expression,
-        private readonly float $result
+        private readonly string $result
     ) {
     }
 
@@ -29,7 +29,7 @@ class CalculationsResponseDto
         return $this->expression;
     }
 
-    public function getResult(): float
+    public function getResult(): string
     {
         return $this->result;
     }
