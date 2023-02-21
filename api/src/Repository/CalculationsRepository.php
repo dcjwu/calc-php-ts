@@ -38,15 +38,4 @@ class CalculationsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    /**
-     * @return Calculations[]
-     */
-    public function findCalculationsByCalculatorId(int $calculatorId): array
-    {
-        $query = $this->_em->createQuery('SELECT c FROM App\Entity\Calculations c WHERE c.calculator = :calculatorId');
-        $query->setParameter('calculatorId', $calculatorId);
-
-        return $query->getResult();
-    }
 }

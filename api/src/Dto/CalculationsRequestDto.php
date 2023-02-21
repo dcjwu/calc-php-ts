@@ -19,9 +19,11 @@ class CalculationsRequestDto
         return $this->expression;
     }
 
-    public function setExpression($expression): void
+    public function setExpression($expression): self
     {
         $this->expression = $expression;
+
+        return $this;
     }
 
     public function getResult()
@@ -29,8 +31,10 @@ class CalculationsRequestDto
         return $this->result;
     }
 
-    public function setResult($result): void
+    public function setResult($result): self
     {
         $this->result = $result;
+
+        return $this;
     }
 }

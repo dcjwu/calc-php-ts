@@ -15,11 +15,12 @@ use Symfony\Component\HttpFoundation\Request;
 class CalculationsService
 {
     public function __construct(
-        private readonly TokenServiceInterface $tokenService,
-        private readonly CalculatorService $calculatorService,
+        private readonly TokenServiceInterface  $tokenService,
+        private readonly CalculatorService      $calculatorService,
         private readonly CalculationsRepository $calculationsRepository,
-        private readonly CalculationsFactory $calculationsFactory,
-    ) {
+        private readonly CalculationsFactory    $calculationsFactory,
+    )
+    {
     }
 
     /**
@@ -42,10 +43,10 @@ class CalculationsService
             throw new CalculatorNotFoundException();
         }
 
-        $calculations = $this->calculationsRepository->findCalculationsByCalculatorId($calculator->getId());
+        $calculations = $this->calculationsRepository->findBy(['calculator' => $calculator]);
 
         return array_map(
-            fn (Calculations $calculation) => new CalculationsResponseDto(
+            fn(Calculations $calculation) => new CalculationsResponseDto(
                 $calculation->getCalculator()->getId(),
                 $calculation->getId(),
                 $calculation->getExpression(),
