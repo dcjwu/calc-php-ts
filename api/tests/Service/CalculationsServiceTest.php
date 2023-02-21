@@ -17,7 +17,6 @@ use App\Service\CalculatorService;
 use App\Service\SessionTokenService;
 use App\Tests\AbstractTestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Process\Exception\LogicException;
 
 class CalculationsServiceTest extends AbstractTestCase
 {
@@ -69,19 +68,19 @@ class CalculationsServiceTest extends AbstractTestCase
     public function testGetCalculations()
     {
         $this->tokenService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getToken')
             ->with($this->request)
             ->willReturn($this->token);
 
         $this->calculatorService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getCalculator')
             ->with($this->token)
             ->willReturn($this->calculator);
 
         $this->calculationsRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findBy')
             ->with(['calculator' => $this->calculator])
             ->willReturn([$this->calculations]);
@@ -105,7 +104,7 @@ class CalculationsServiceTest extends AbstractTestCase
         $this->expectExceptionMessage('Unauthorized');
 
         $this->tokenService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getToken')
             ->with($this->request)
             ->willReturn(null);
@@ -119,13 +118,13 @@ class CalculationsServiceTest extends AbstractTestCase
         $this->expectExceptionMessage('Calculator not found');
 
         $this->tokenService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getToken')
             ->with($this->request)
             ->willReturn($this->token);
 
         $this->calculatorService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getCalculator')
             ->with($this->token)
             ->willReturn(null);
@@ -140,47 +139,47 @@ class CalculationsServiceTest extends AbstractTestCase
             ->setResult(4.0);
 
         $this->tokenService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getToken')
             ->with($this->request)
             ->willReturn($this->token);
 
         $this->calculatorService
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('getCalculator')
             ->with($this->token)
             ->willReturn($this->calculator);
 
         $this->calculationsFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setCalculator')
             ->with($this->calculator)
             ->willReturnSelf();
 
         $this->calculationsFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setExpression')
             ->with($dto->getExpression())
             ->willReturnSelf();
 
         $this->calculationsFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setResult')
             ->with($dto->getResult())
             ->willReturnSelf();
 
         $this->calculationsFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setCreatedAt')
             ->willReturnSelf();
 
         $this->calculationsFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('create')
             ->willReturn($this->calculations);
 
         $this->calculationsRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('save')
             ->with($this->calculations, true);
 

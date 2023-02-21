@@ -48,7 +48,7 @@ class SessionTokenServiceTest extends TestCase
             ->willReturn('1234');
 
         $this->tokenRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['value' => '1234'])
             ->willReturn($this->token);
@@ -70,7 +70,7 @@ class SessionTokenServiceTest extends TestCase
             ->willReturn('');
 
         $this->tokenRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['value' => ''])
             ->willReturn(null);
@@ -92,17 +92,17 @@ class SessionTokenServiceTest extends TestCase
             ->willReturn('');
 
         $this->tokenRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['value' => ''])
             ->willReturn(null);
 
         $this->tokenFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setValue');
 
         $this->tokenRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('save');
 
         $this->tokenService->createToken($this->request);
@@ -122,7 +122,7 @@ class SessionTokenServiceTest extends TestCase
             ->willReturn('1234');
 
         $this->tokenRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['value' => '1234'])
             ->willReturn($this->token);

@@ -40,7 +40,7 @@ class CalculatorServiceTest extends TestCase
     public function testGetCalculator()
     {
         $this->calculatorRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['token' => $this->token])
             ->willReturn($this->calculator);
@@ -54,7 +54,7 @@ class CalculatorServiceTest extends TestCase
     public function testGetCalculatorReturnsNull()
     {
         $this->calculatorRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['token' => $this->token])
             ->willReturn(null);
@@ -68,29 +68,29 @@ class CalculatorServiceTest extends TestCase
     public function testCreateCalculator()
     {
         $this->calculatorRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['token' => $this->token])
             ->willReturn(null);
 
         $this->calculatorFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setToken')
             ->with($this->token)
             ->willReturnSelf();
 
         $this->calculatorFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('setCreatedAt')
             ->willReturnSelf();
 
         $this->calculatorFactory
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('create')
             ->willReturn($this->calculator);
 
         $this->calculatorRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('save');
 
         $this->calculatorService->createCalculator($this->token);
@@ -102,7 +102,7 @@ class CalculatorServiceTest extends TestCase
         $this->expectExceptionMessage('Calculator already exists');
 
         $this->calculatorRepository
-            ->expects(static::once())
+            ->expects($this->once())
             ->method('findOneBy')
             ->with(['token' => $this->token])
             ->willReturn($this->calculator);
