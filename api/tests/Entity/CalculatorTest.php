@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
 {
-    public function testGetters(): void
+    public function testGetters()
     {
         $token = (new Token())
             ->setValue('abcde');
