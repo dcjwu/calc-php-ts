@@ -1,0 +1,16 @@
+@import "../../styles/constants";
+
+.btn {
+  width: 100%;
+  border: none;
+  background-color: $color-main;
+  font-weight: bold;
+  border-radius: 1.2rem;
+  outline: none;
+  font-size: 2.8rem;
+  transition: background-color .2s ease;
+  padding: 1.2rem;
+  &:hover {
+    background-color: $color-main-highlight;
+  }
+}

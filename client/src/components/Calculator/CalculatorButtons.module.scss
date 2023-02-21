@@ -1,0 +1,9 @@
+.wrapper {
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: .4rem;
+  height: calc(80% - 2.4rem);
+  align-items: center;
+}

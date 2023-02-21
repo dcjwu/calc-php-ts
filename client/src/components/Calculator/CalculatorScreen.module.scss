@@ -1,0 +1,19 @@
+@import "src/styles/constants";
+
+.screen {
+  border: none;
+  padding: .4rem 1.2rem;
+  width: calc(100% - 2.4rem);
+  height: calc(8.6rem - .8rem);
+  font-size: 4.2rem;
+  text-align: right;
+  border-bottom: 1px solid $color-secondary-highlight;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}

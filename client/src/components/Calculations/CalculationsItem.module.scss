@@ -1,0 +1,11 @@
+.wrapper {
+  width: calc(100% - 2.4rem);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .8rem;
+  padding: 1.2rem 1.2rem;
+  p {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+}

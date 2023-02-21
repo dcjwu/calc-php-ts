@@ -1,0 +1,15 @@
+@import "src/styles/constants";
+
+.wrapper {
+  width: calc(50% - 2.4rem);
+  height: calc(50% - 2.4rem);
+  border: 1px solid $color-dark;
+  padding: 1.2rem 1.2rem;
+  overflow: scroll;
+}
+
+.title {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
