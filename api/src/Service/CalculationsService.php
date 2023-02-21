@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use App\Dto\CalculationsRequestDto;
@@ -15,12 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
 class CalculationsService
 {
     public function __construct(
-        private readonly TokenServiceInterface  $tokenService,
-        private readonly CalculatorService      $calculatorService,
+        private readonly TokenServiceInterface $tokenService,
+        private readonly CalculatorService $calculatorService,
         private readonly CalculationsRepository $calculationsRepository,
-        private readonly CalculationsFactory    $calculationsFactory,
-    )
-    {
+        private readonly CalculationsFactory $calculationsFactory,
+    ) {
     }
 
     /**
@@ -46,7 +47,7 @@ class CalculationsService
         $calculations = $this->calculationsRepository->findBy(['calculator' => $calculator]);
 
         return array_map(
-            fn(Calculations $calculation) => new CalculationsResponseDto(
+            fn (Calculations $calculation) => new CalculationsResponseDto(
                 $calculation->getCalculator()->getId(),
                 $calculation->getId(),
                 $calculation->getExpression(),

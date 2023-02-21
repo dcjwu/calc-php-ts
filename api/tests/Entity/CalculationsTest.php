@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Entity;
 
 use App\Entity\Calculations;
@@ -30,4 +32,3 @@ class CalculationsTest extends TestCase
         $this->assertSame('2023-04-04T00:00:00+00:00', $calculations->getCreatedAt()->format(DATE_W3C));
     }
 }
-

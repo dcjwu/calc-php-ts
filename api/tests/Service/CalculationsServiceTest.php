@@ -1,4 +1,8 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
 
 namespace App\Tests\Service;
 
@@ -20,7 +24,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CalculationsServiceTest extends AbstractTestCase
 {
-
     private TokenServiceInterface $tokenService;
     private CalculatorService $calculatorService;
     private CalculationsRepository $calculationsRepository;
@@ -63,7 +66,6 @@ class CalculationsServiceTest extends AbstractTestCase
             ->setCreatedAt(new \DateTimeImmutable('2023-03-03'));
         $this->setEntityId($this->calculations, 15);
     }
-
 
     public function testGetCalculations()
     {
