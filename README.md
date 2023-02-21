@@ -23,6 +23,7 @@ _Frontend is exposed on port 8080_;
 - ```make test-integration```
 
 ## Notes
+- [x] _GET_ request without previous _POST_ requests returns `401 Unauthorized`;
 - [x] Calculator is managed through session cookie, so it is not possible to make a request to another calculator;
 - [x] Calculator returns last 5 calculations;
-- [x] Calculation's _expression_ and _result_ are stored as `string`;
+- [x] Calculation's _expression_ and _result_ are stored as `string` type;
