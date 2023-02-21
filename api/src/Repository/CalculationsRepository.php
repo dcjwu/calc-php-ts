@@ -40,4 +40,17 @@ class CalculationsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @return Calculations[]
+     */
+    public function getLastNCalculations(int $calculatorId, int $n): array
+    {
+        $query = $this->_em->createQuery('SELECT c FROM App\Entity\Calculations c WHERE c.calculator = :calculatorId ORDER BY c.createdAt DESC');
+        $query
+            ->setParameter('calculatorId', $calculatorId)
+            ->setMaxResults($n);
+
+        return $query->getResult();
+    }
 }

@@ -23,12 +23,12 @@ class CalculationsFactoryTest extends TestCase
         $calculations = (new CalculationsFactory())
             ->setCalculator($calculator)
             ->setExpression('2 + 2')
-            ->setResult(4.0)
+            ->setResult('4.0')
             ->setCreatedAt()
             ->create();
 
         $this->assertSame($calculator, $calculations->getCalculator());
         $this->assertSame('2 + 2', $calculations->getExpression());
-        $this->assertSame(4.0, $calculations->getResult());
+        $this->assertSame('4.0', $calculations->getResult());
     }
 }

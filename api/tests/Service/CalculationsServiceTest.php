@@ -62,7 +62,7 @@ class CalculationsServiceTest extends AbstractTestCase
         $this->calculations = (new Calculations())
             ->setCalculator($this->calculator)
             ->setExpression('2 + 2')
-            ->setResult(4.0)
+            ->setResult('4.0')
             ->setCreatedAt(new \DateTimeImmutable('2023-03-03'));
         $this->setEntityId($this->calculations, 15);
     }
@@ -83,8 +83,8 @@ class CalculationsServiceTest extends AbstractTestCase
 
         $this->calculationsRepository
             ->expects($this->once())
-            ->method('findBy')
-            ->with(['calculator' => $this->calculator])
+            ->method('getLastNCalculations')
+            ->with($this->calculator->getId(), 5)
             ->willReturn([$this->calculations]);
 
         $expected = new CalculationsResponseDto(
@@ -138,7 +138,7 @@ class CalculationsServiceTest extends AbstractTestCase
     {
         $dto = (new CalculationsRequestDto())
             ->setExpression('2 + 2')
-            ->setResult(4.0);
+            ->setResult('4.0');
 
         $this->tokenService
             ->expects($this->once())

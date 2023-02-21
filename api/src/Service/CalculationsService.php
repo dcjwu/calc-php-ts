@@ -44,7 +44,7 @@ class CalculationsService
             throw new CalculatorNotFoundException();
         }
 
-        $calculations = $this->calculationsRepository->findBy(['calculator' => $calculator]);
+        $calculations = $this->calculationsRepository->getLastNCalculations($calculator->getId(), 5);
 
         return array_map(
             fn (Calculations $calculation) => new CalculationsResponseDto(
